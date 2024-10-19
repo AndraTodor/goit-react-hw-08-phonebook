@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/goit-react-hw-08-phonebook/static/css/main.44b413d1.css",
-    "main.js": "/goit-react-hw-08-phonebook/static/js/main.ef2e6d65.js",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.054d4565.js",
     "static/js/983.03f16fa2.chunk.js": "/goit-react-hw-08-phonebook/static/js/983.03f16fa2.chunk.js",
-    "static/js/30.56f8e0cf.chunk.js": "/goit-react-hw-08-phonebook/static/js/30.56f8e0cf.chunk.js",
+    "static/js/30.5fca0ebc.chunk.js": "/goit-react-hw-08-phonebook/static/js/30.5fca0ebc.chunk.js",
     "static/js/931.1388f121.chunk.js": "/goit-react-hw-08-phonebook/static/js/931.1388f121.chunk.js",
     "static/js/929.3ede5ecf.chunk.js": "/goit-react-hw-08-phonebook/static/js/929.3ede5ecf.chunk.js",
     "static/js/306.8cfe9fec.chunk.js": "/goit-react-hw-08-phonebook/static/js/306.8cfe9fec.chunk.js",
     "static/js/548.daf6d8db.chunk.js": "/goit-react-hw-08-phonebook/static/js/548.daf6d8db.chunk.js",
     "index.html": "/goit-react-hw-08-phonebook/index.html",
     "main.44b413d1.css.map": "/goit-react-hw-08-phonebook/static/css/main.44b413d1.css.map",
-    "main.ef2e6d65.js.map": "/goit-react-hw-08-phonebook/static/js/main.ef2e6d65.js.map",
+    "main.054d4565.js.map": "/goit-react-hw-08-phonebook/static/js/main.054d4565.js.map",
     "983.03f16fa2.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/983.03f16fa2.chunk.js.map",
-    "30.56f8e0cf.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/30.56f8e0cf.chunk.js.map",
+    "30.5fca0ebc.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/30.5fca0ebc.chunk.js.map",
     "931.1388f121.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/931.1388f121.chunk.js.map",
     "929.3ede5ecf.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/929.3ede5ecf.chunk.js.map",
     "306.8cfe9fec.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/306.8cfe9fec.chunk.js.map",
@@ -20,6 +20,6 @@
   },
   "entrypoints": [
     "static/css/main.44b413d1.css",
-    "static/js/main.ef2e6d65.js"
+    "static/js/main.054d4565.js"
   ]
 }

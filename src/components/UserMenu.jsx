@@ -1,26 +1,21 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { logoutUser } from '../redux/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/auth/operations';
+import { selectAuthUser } from '../redux/auth/selectors';
 
-const UserMenu = () => {
+export const UserMenu = () => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.auth.user);
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
-
-  const handleLogout = () => {
-    dispatch(logoutUser());
-  };
+  const user = useSelector(selectAuthUser);
 
   return (
-    <div>
-      {isAuthenticated ? (
-        <div>
-          <span>Welcome, {user.name}!</span>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      ) : (
-        <span>Please log in</span>
-      )}
+    <div className="flex items-center space-x-4">
+      <p className="text-white">Welcome, {user.name}</p>
+      <button
+        type="button"
+        onClick={() => dispatch(logout())}
+        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+      >
+        Logout
+      </button>
     </div>
   );
 };

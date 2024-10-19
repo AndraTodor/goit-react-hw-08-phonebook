@@ -1,69 +1,87 @@
-import React, { useState } from 'react';
+import { Field, Form, Formik, ErrorMessage } from 'formik';
 
-const ContactForm = ({ onSubmit }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+import * as Yup from 'yup';
+import { useId } from 'react';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../redux/contacts/operations';
+import toast from 'react-hot-toast';
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    if (name && number) {
-      // Trimitem datele de contact la funcția onSubmit din App
-      onSubmit(name, number);
-      // Resetăm câmpurile de input după submit
-      setName('');
-      setNumber('');
-    } else {
-      // Afișăm un mesaj de alertă dacă unul dintre câmpuri nu este completat
-      alert('Please fill out both fields.');
-    }
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
+  const onAddContact = newContact => {
+    dispatch(addContact(newContact))
+      .unwrap()
+      .then(() => {
+        toast.success('Contact added successfully!');
+      });
   };
 
+  const initialValues = { name: '', number: '' };
+  const nameFieldId = useId();
+  const numberFieldId = useId();
+  const addContactSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(3, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required!'),
+    number: Yup.number()
+      .min(7, 'Too Short!')
+      .required('Required!')
+      .typeError('Enter phone-number!'),
+  });
+
+  const handleFormSubmit = (values, actions) => {
+    onAddContact(values);
+    actions.resetForm();
+  };
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Câmp pentru nume */}
-      <div className="flex flex-col">
-        <label htmlFor="name" className="mb-1 text-lg font-medium">
-          Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          // pattern="^[a-zA-Z]+([' -][a-zA-Z]+)*$"
-          title="Name may contain only letters, apostrophe, dash, and spaces."
-          required
-          className="p-2 border rounded-md"
-        />
-      </div>
-
-      {/* Câmp pentru numărul de telefon */}
-      <div className="flex flex-col">
-        <label htmlFor="number" className="mb-1 text-lg font-medium">
-          Number
-        </label>
-        <input
-          type="tel"
-          id="number"
-          name="number"
-          value={number}
-          onChange={e => setNumber(e.target.value)}
-          // pattern="\+?\d{1,4}[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses, and can start with +."
-          required
-          className="p-2 border rounded-md"
-        />
-      </div>
-
-      {/* Buton de submit */}
-      <button
-        type="submit"
-        className="bg-teal-600 text-white p-2 rounded-lg hover:bg-teal-700"
-      >
-        Add Contact
-      </button>
-    </form>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleFormSubmit}
+      validationSchema={addContactSchema}
+    >
+      <Form className="space-y-6 bg-white p-6 shadow-md rounded-lg">
+        <div>
+          <label htmlFor={nameFieldId} className="block mb-1 text-gray-600">
+            Name
+          </label>
+          <Field
+            type="text"
+            name="name"
+            id={nameFieldId}
+            className="w-full border border-gray-300 p-2 rounded"
+          />
+          <ErrorMessage
+            name="name"
+            component="span"
+            className="text-red-500 text-sm"
+          />
+        </div>
+        <div>
+          <label htmlFor={numberFieldId} className="block mb-1 text-gray-600">
+            Phone
+          </label>
+          <Field
+            type="tel"
+            name="number"
+            id={numberFieldId}
+            className="w-full border border-gray-300 p-2 rounded"
+          />
+          <ErrorMessage
+            name="number"
+            component="span"
+            className="text-red-500 text-sm"
+          />
+        </div>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+        >
+          Add Contact
+        </button>
+      </Form>
+    </Formik>
   );
 };
 

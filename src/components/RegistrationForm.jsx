@@ -27,6 +27,7 @@ const RegistrationForm = () => {
       .max(100, 'Password must be less than 100 characters'),
   });
   const handleFormSubmit = value => {
+    console.log('Form data:', value); // Afișează datele trimise către server
     dispatch(register(value));
   };
   return (

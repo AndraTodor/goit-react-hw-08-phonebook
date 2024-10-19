@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
 export const instance = axios.create({
   baseURL: 'https://connections-api.goit.global',
 });
@@ -10,11 +11,11 @@ export const register = createAsyncThunk(
   'auth/register',
   async (formData, thunkAPI) => {
     try {
-      const { data } = await instance.post('/users/signup', formData);
+      const { data } = await instance.post('users/signup', formData);
       setAuthHeaders(data.token);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
